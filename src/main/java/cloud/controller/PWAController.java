@@ -16,7 +16,7 @@ public class PWAController {
     @ApiOperation(value = "获取所有pwa应用")
     @GetMapping("/drone")
     public String pwaGetAll() {
-        System.out.println("a");
+        System.out.println("as");
         return "test";
     }
 }
