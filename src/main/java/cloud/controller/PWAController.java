@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class PWAController {
     @ApiOperation(value = "获取所有pwa应用")
     @GetMapping("/drone")
-    private String pwaGetAll() {
+    public String pwaGetAll() {
+        System.out.println("a");
         return "test";
     }
 }
