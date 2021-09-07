@@ -17,7 +17,7 @@ echo '----rm image----'
 
 docker build -t ${group_name}/${app_name}:${app_version} .
 echo '----build image----'
-docker run -p 8080:8080 --name ${app_name}  \
+docker run -p 8089:8080 --name ${app_name}  \
 -e TZ="Asia/Shanghai" \
 -v /etc/localtime:/etc/localtime \
 -v /mydata/app/${app_name}/logs:/var/logs \
