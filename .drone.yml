@@ -15,6 +15,8 @@ steps: # 定义流水线执行步骤，这些步骤将顺序执行
       - cp target/testdrone-1.0.0.jar /app/build/testdrone-1.0.0.jar
       - cp Dockerfile /app/build/Dockerfile
       - cp run.sh /app/build/run.sh
+    when:
+      event: tag
 
   - name: build-start
     image: appleboy/drone-ssh # SSH工具镜像
@@ -30,6 +32,8 @@ steps: # 定义流水线执行步骤，这些步骤将顺序执行
         - cd /mydata/maven/build # 进入宿主机构建目录
         - chmod +x run.sh # 更改为可执行脚本
         - ./run.sh # 运行脚本打包应用镜像并运行
+    when:
+      event: tag
 
 volumes: # 定义流水线挂载目录，用于共享数据
   - name: maven-build
