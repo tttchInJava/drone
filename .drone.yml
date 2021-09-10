@@ -18,7 +18,7 @@ steps: # 定义流水线执行步骤，这些步骤将顺序执行
     when:
       event: tag # 使用when 根据状况区分，使用tag作为事件标志，
 
-  - name: build-start
+  - name: build-online
     image: appleboy/drone-ssh # SSH工具镜像
     settings:
       host:     # 远程连接地址
