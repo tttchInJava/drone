@@ -35,7 +35,7 @@ steps: # 定义流水线执行步骤，这些步骤将顺序执行
       when:
         event: tag
 
-  - name: build-start
+  - name: build-start2
       image: appleboy/drone-ssh # SSH工具镜像
       settings:
         host: # 远程连接地址
