@@ -16,24 +16,43 @@ steps: # 定义流水线执行步骤，这些步骤将顺序执行
       - cp Dockerfile /app/build/Dockerfile
       - cp run.sh /app/build/run.sh
     when:
-      event: tag
+      event: tag # 使用when 根据状况区分，使用tag作为事件标志，
 
   - name: build-start
-    image: appleboy/drone-ssh # SSH工具镜像
-    settings:
-      host:     # 远程连接地址
-        from_secret: ssh_ip
-      username: root # 远程连接账号
-      password:
-        from_secret: ssh_password # 从Secret中读取SSH密码
-      port: 22 # 远程连接端口
-      command_timeout: 5m # 远程执行命令超时时间
-      script:
-        - cd /mydata/maven/build # 进入宿主机构建目录
-        - chmod +x run.sh # 更改为可执行脚本
-        - ./run.sh # 运行脚本打包应用镜像并运行
-    when:
-      event: tag
+      image: appleboy/drone-ssh # SSH工具镜像
+      settings:
+        host: # 远程连接地址
+          from_secret: ssh_ip
+        username: root # 远程连接账号
+        password:
+          from_secret: ssh_password # 从Secret中读取SSH密码
+        port: 22 # 远程连接端口
+        command_timeout: 5m # 远程执行命令超时时间
+        script:
+          - cd /mydata/maven/build # 进入宿主机构建目录
+          - chmod +x run.sh # 更改为可执行脚本
+          - ./run.sh # 运行脚本打包应用镜像并运行
+      when:
+        event: tag
+
+  - name: build-start
+      image: appleboy/drone-ssh # SSH工具镜像
+      settings:
+        host: # 远程连接地址
+          from_secret: 133.43.44.1
+        username: root # 远程连接账号
+        password:
+          from_secret: ssh_password # 从Secret中读取SSH密码
+        port: 22 # 远程连接端口
+        command_timeout: 5m # 远程执行命令超时时间
+        script:
+          - cd /mydata/maven/build # 进入宿主机构建目录
+          - chmod +x run.sh # 更改为可执行脚本
+          - ./run.sh # 运行脚本打包应用镜像并运行
+      when:
+        ref:
+          exclude:
+            - refs/tags/**
 
 volumes: # 定义流水线挂载目录，用于共享数据
   - name: maven-build
