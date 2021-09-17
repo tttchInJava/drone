@@ -25,6 +25,6 @@ public class PWAController {
 
         int v = (int) (Math.random() * all.length);
         System.out.println(v);
-        return all[v];
+        return "天狗今天吃什么 : "+all[v];
     }
 }
