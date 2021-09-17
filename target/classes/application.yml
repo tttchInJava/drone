@@ -8,4 +8,4 @@ spring:
     username: postgres
     password: postgres
 str:
-  all: 饺子,麻辣烫,臊子面,重选
+  all: 饺子,麻辣烫,臊子面
